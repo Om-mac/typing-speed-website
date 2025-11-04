@@ -1,3 +1,4 @@
+steps to run the prject: 
 g++ main.cpp -o main.cgi
 ./main.cgi 
 cd ~/Desktop/typing-speed-website
