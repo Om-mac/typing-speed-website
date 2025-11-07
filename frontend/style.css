@@ -1,67 +1,149 @@
+/* ======== 🌟 Master-Level UI CSS ======== */
+
+/* Global Reset & Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding-top: 50px;
+  background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+  color: #f5f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 60px;
+  overflow-x: hidden;
 }
 
+/* ====== Glassmorphic Container ====== */
 .container {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    width: 600px;
-    max-width: 90%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 40px;
+  width: 600px;
+  max-width: 92%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* ====== Headings ====== */
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* ====== Stats Bar ====== */
 .stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 25px;
+  color: #dfe6ed;
 }
 
+/* ====== Text Box (Read-Only Area) ====== */
 .text-box {
-    background-color: #f7f9fc;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    min-height: 60px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.5;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 20px;
+  border-radius: 12px;
+  min-height: 70px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #f0f4f8;
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.05);
 }
 
+/* ====== Textarea ====== */
 textarea {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    resize: none;
+  width: 100%;
+  padding: 15px 18px;
+  font-size: 17px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
 }
 
+textarea:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+}
+
+/* ====== Buttons ====== */
 button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 198, 255, 0.3);
+  transform: translateY(0);
 }
 
 button:hover {
-    background-color: #0056b3;
+  background: linear-gradient(90deg, #00aaff, #0072ff);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 198, 255, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 198, 255, 0.2);
+}
+
+/* ====== Animations ====== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== Responsive Design ====== */
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  textarea,
+  .text-box {
+    font-size: 16px;
+  }
 }
