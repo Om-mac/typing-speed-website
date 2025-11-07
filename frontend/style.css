@@ -41,7 +41,7 @@ h1 {
   letter-spacing: 1px;
   margin-bottom: 30px;
   background: linear-gradient(90deg, #00c6ff, #0072ff);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
 }
 
