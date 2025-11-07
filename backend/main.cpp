@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <string>
 #include <cstdlib>
@@ -26,31 +25,6 @@ std::string escapeJSON(const std::string &s) {
     return result;
 }
 
-// Read CSV file
-std::vector<Text> readCSV(const std::string &filename) {
-    std::vector<Text> texts;
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return texts;
-    }
-
-    std::string line;
-    if (!std::getline(file, line)) return texts; // skip header
-    while (std::getline(file, line)) {
-        std::istringstream ss(line);
-        std::string idStr, content;
-        if (!std::getline(ss, idStr, ',')) continue;
-        if (!std::getline(ss, content)) continue;
-
-        Text t;
-        t.id = std::stoi(idStr);
-        t.content = content;
-        texts.push_back(t);
-    }
-    return texts;
-}
-
 int main(int argc, char* argv[]) {
 
     // Mode 1: Calculate WPM if 2 arguments are passed
@@ -68,19 +42,29 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    // Mode 2: Send random text from CSV
-    std::string csvPath = "/Users/tapdiyaom/Desktop/typing-speed-website/backend/text_database.csv";
-    std::vector<Text> texts = readCSV(csvPath);
+    // Mode 2: Send random text from internal database
+    std::vector<Text> texts = {
+        {1, "The quick brown fox jumps over the lazy dog."},
+        {2, "Typing speed measures how fast and accurately you can type on a keyboard."},
+        {3, "C++ is a powerful language used for systems, games, and backend applications."},
+        {4, "Consistency and daily practice are key to improving your typing skills."},
+        {5, "Artificial Intelligence is transforming industries and shaping the future of technology."},
+        {6, "Backend development handles data, authentication, and server logic."},
+        {7, "Always write clean, maintainable, and well-documented code."},
+        {8, "Coding challenges are a great way to enhance problem-solving skills."},
+        {9, "Success comes from small efforts repeated daily."},
+        {10, "Speed is useful only when accuracy is not compromised."}
+    };
 
-    // Output JSON (C++ backend prints content-type header only for CGI)
+    // Output JSON (for CGI-based backend)
     std::cout << "Content-type: application/json\n\n";
 
     if (texts.empty()) {
-        std::cout << "{ \"error\": \"No texts found\" }";
+        std::cout << "{ \"error\": \"No texts available\" }";
         return 0;
     }
 
-    std::srand(std::time(nullptr));
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
     int idx = std::rand() % texts.size();
     Text randomText = texts[idx];
 
